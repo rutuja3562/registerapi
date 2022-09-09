@@ -1,15 +1,17 @@
 const express = require("express");
 const connect = require("./configs/db");
+const cors = require("cors");
 const userController = require("./controllers/user.controller")
 const productController = require("./controllers/product.controller")
 
+const port=process.env.PORT||5000
 const {register,login, generateToken} = require("./controllers/auth.controller")
 const app = express();
 const passport = require("./configs/google-oauth")
 
 
 app.use(express.json());
-
+app.use(cors());
 
 app.use("/users", userController)
 
@@ -32,7 +34,7 @@ app.get(
   }
 )
 
-app.listen(5000, async () => {
+app.listen(port, async () => {
     try{
         await connect();
         console.log("listening on port 5000")
