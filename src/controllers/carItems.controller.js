@@ -8,7 +8,7 @@ const CarItem = require("../models/carItems.model")
 
 router.post("",  async (req, res) => {
 
-    req.body.user_id = req.user._id;
+    // req.body.user_id = req.user._id;
     
     try{
         const item = await CarItem.create(req.body)
