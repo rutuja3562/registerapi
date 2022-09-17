@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 const itemSchema = new mongoose.Schema(
   {
-    brand: { type: String, required: true },
-    type: { type: String, required: true },
-    year: { type: String, required: true },
-    kms: { type: String, required: true },
-    description: { type: String, required: true },
-    Price: { type: Number, required: true },
+    brand: { type: String },
+    type: { type: String },
+    year: { type: String },
+    kms: { type: String },
+    description: { type: String },
+    Price: { type: Number },
   },
   {
     timestamps: true,
