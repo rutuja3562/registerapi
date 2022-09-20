@@ -5,10 +5,10 @@ const userController = require("./controllers/user.controller")
 const productController = require("./controllers/product.controller")
 const carController=require("./controllers/carItems.controller")
 const port=process.env.PORT||5000
-
+require("dotenv").config();
 const {register,login, generateToken} = require("./controllers/auth.controller")
 const app = express();
-// const passport = require("./configs/google-oauth")
+const passport = require("./configs/google-oauth")
 
 
 app.use(express.json());
@@ -22,18 +22,18 @@ app.post("/login", login)
 
 app.use("/products", productController)
 app.use("/cars", carController)
-// app.get('/auth/google',
-//   passport.authenticate('google', { scope: ['profile', 'email'] }));
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] }));
  
-// app.get(
-// '/auth/google/callback', 
-//   passport.authenticate('google', { failureRedirect: '/login', session:false } ),
+app.get(
+'/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login', session:false } ),
 
-//   function(req, res) {
-//     const token = generateToken(req.user)
-//     return res.status(200).send({user:req.user, token})
-//   }
-// )
+  function(req, res) {
+    const token = generateToken(req.user)
+    return res.status(200).send({user:req.user, token})
+  }
+)
 
 app.listen(port, async () => {
     try{

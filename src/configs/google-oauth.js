@@ -9,10 +9,13 @@ require("dotenv").config()
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:5000/auth/google/callback",
-    passReqToCallback:true
+    callbackURL: "http://localhost:5000/auth/google/callback"
   },
   async function(accessToken, refreshToken, profile, cb) {
+console.log("accessToken",accessToken)
+console.log("refreshToken",refreshToken)
+
+console.log("profile",profile)
 
     let user = await User.findOne({email : profile?._json?.email}).lean().exec()
 
@@ -29,4 +32,4 @@ passport.use(new GoogleStrategy({
   }
 ));
 
-// module.exports = passport;
+module.exports = passport;
