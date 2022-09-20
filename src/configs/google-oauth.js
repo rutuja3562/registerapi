@@ -32,4 +32,4 @@ console.log("profile",profile)
   }
 ));
 
-module.exports = passport;
+// module.exports = passport;
