@@ -4,6 +4,8 @@ const cors = require("cors");
 const userController = require("./controllers/user.controller")
 const productController = require("./controllers/product.controller")
 const carController=require("./controllers/carItems.controller")
+const chartController=require("./controllers/chart.controller")
+
 const port=process.env.PORT||5000
 require("dotenv").config();
 const {register,login, generateToken} = require("./controllers/auth.controller")
@@ -19,7 +21,7 @@ app.use("/users", userController)
 app.post("/register", register)
 
 app.post("/login", login)
-
+app.use("/charts", chartController)
 app.use("/products", productController)
 app.use("/cars", carController)
 // app.get('/auth/google',
