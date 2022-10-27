@@ -19,7 +19,6 @@ app.use(cors());
 app.use("/users", userController)
 
 app.post("/register", register)
-
 app.post("/login", login)
 app.use("/charts", chartController)
 app.use("/products", productController)
